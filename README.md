@@ -10,3 +10,6 @@ The problems I've been working on are part of [LeetCode Study Plan](https://leet
 For now I try to aim on just getting an accepted submissions on LeetCode -- and just when I feel like it I'll try to optimize it as best as I can. My solutions are not the best (better solutions are available on LeetCode Discussions forum). When the time is right (i.e. I feel like it), I'll try to revisit my solutions in the future for optimizations.
 
 The problem-solving approach I've applied to each problem should be mostly written on the source code itself as comments (first few lines). But if anyone has any question or up to any discussion -- feel free to send me a message.
+
+## Daily Notes
+There is also an accompanying daily notes (consisting of references I used when working on a solution, especially on reviewing Javascript API). It's availabe [here](https://aback-casquette-46c.notion.site/LeetCode-Grind-Study-Plans-483a6587290a4ce98136f0b4a5bec802).
