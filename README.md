@@ -12,4 +12,4 @@ For now I try to aim on just getting an accepted submissions on LeetCode -- and 
 The problem-solving approach I've applied to each problem should be mostly written on the source code itself as comments (first few lines). But if anyone has any question or up to any discussion -- feel free to send me a message.
 
 ## Daily Notes
-There is also an accompanying daily notes (consisting of references I used when working on a solution, especially on reviewing Javascript API). It's availabe [here](https://aback-casquette-46c.notion.site/LeetCode-Grind-Study-Plans-483a6587290a4ce98136f0b4a5bec802).
+There is also an accompanying daily notes (consisting of references I used when working on a solution, especially on reviewing Javascript API). It's available [here](https://aback-casquette-46c.notion.site/LeetCode-Grind-Study-Plans-483a6587290a4ce98136f0b4a5bec802).
