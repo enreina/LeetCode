@@ -25,5 +25,14 @@ var isHappy = function(n) {
         newNumber = sumSquareOfDigit(newNumber);
     }
     
+    // iteration limit approach
+    // const limit = 10;
+    // let newNumber = n;
+    // let ii = 0;
+    // while (newNumber != 1 && ii < limit) {
+    //     newNumber = sumSquareOfDigit(newNumber);
+    //     ii++;
+    // }
+    
     return newNumber === 1;
 };
