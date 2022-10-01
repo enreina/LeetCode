@@ -13,7 +13,7 @@
 var isBalanced = function(root) {
     // calculate the height of the left subtree
     // calculate the height of the right subtree
-    // return true if height difference is <= 1
+    // return true if height difference is <= 1 and both subtrees are balanced
     // return false otherwise
     
     const calculateTreeHeight = (root) => {
@@ -29,5 +29,5 @@ var isBalanced = function(root) {
         return true;
     }
     
-    return Math.abs(calculateTreeHeight(root.left) - calculateTreeHeight(root.right)) <= 1 && isBalanced(root.left) && isBalanced(root.right);
+    return isBalanced(root.left) && isBalanced(root.right) && Math.abs(calculateTreeHeight(root.left) - calculateTreeHeight(root.right)) <= 1;
 };
