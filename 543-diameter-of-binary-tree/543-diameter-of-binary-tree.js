@@ -19,6 +19,9 @@ var diameterOfBinaryTree = function(root) {
     // - longest path that would pass root.left
     // - longest path that would pass root.right
     
+    // memoize tree height
+    const memoizedTreeHeight = new Map();
+    
     if (root === null) {
         return 0;
     }
@@ -28,7 +31,11 @@ var diameterOfBinaryTree = function(root) {
             return 0;
         }  
         
-        return 1 + Math.max(calculateTreeHeight(root.left), calculateTreeHeight(root.right));
+        if (!memoizedTreeHeight.has(root)) {
+            memoizedTreeHeight.set(root, Math.max(calculateTreeHeight(root.left), calculateTreeHeight(root.right)) + 1);
+        }
+        
+        return memoizedTreeHeight.get(root);
     };
     
     return Math.max(calculateTreeHeight(root.left) + calculateTreeHeight(root.right), diameterOfBinaryTree(root.left), diameterOfBinaryTree(root.right));
