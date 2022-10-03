@@ -7,16 +7,18 @@ var searchMatrix = function(matrix, target) {
     // Binary Seach
     // First get the middle row of the matrix (i.e. index = number of rows / 2)
     // compare the first element of the row with the target
-    //      - if element is more than the target -> reduce search area to first half of the matrix rows
-    //      - if element is less than the target -> reduce search area to later half of the matrix rows
-    //      - if element equals to the target, return true
-    // repeat until we're left with only one row
+    //      - if element is more than the target -> 
+    //      - if element is less than the target
+    //           - compare the head element of next row, if it's more than the target, return the index of this row
+    //           - otherwise: reduce search area to later half of the matrix rows
+    //      - if element equals to the target, return the index of this row
+    // repeat until there is no search area
     // Then, get the middle of the row (i.e. index = number of cols / 2)\
     // compare the element of the row with the target
     //      - if element is more than the target -> reduce search area to first half of the row
     //      - if element is less than the target -> reduce search area to later half of the row
     //      - if element equals to the target, return true
-    // repeat until we're left with only one element (return false if no matching element found)
+    // repeat until we're out of search area
     
     const binarySearchRow = (startRow, endRow) => {
         if (endRow < startRow || startRow >= matrix.length) {
