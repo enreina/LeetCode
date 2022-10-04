@@ -11,11 +11,14 @@
  */
 var BSTIterator = function(root) {
     this.stack = new Array();
-    let currentNode = root;
-    while (currentNode !== null) {
-        this.stack.push(currentNode);
-        currentNode = currentNode.left;
+    this.updateStack = (currentNode) => {
+        while (currentNode !== null) {
+            this.stack.push(currentNode);
+            currentNode = currentNode.left;
+        } 
     }
+    this.updateStack(root);
+    
 };
 
 /**
@@ -25,11 +28,7 @@ BSTIterator.prototype.next = function() {
     if (this.stack.length > 0) {
         const nodeToBeReturned = this.stack.pop();
         let currentNode = nodeToBeReturned;
-        currentNode = currentNode.right;
-        while (currentNode !== null) {
-            this.stack.push(currentNode);
-            currentNode = currentNode.left;
-        }
+        this.updateStack(currentNode.right);
         return nodeToBeReturned.val;
     }
 };
