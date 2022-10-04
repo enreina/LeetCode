@@ -6,6 +6,7 @@
  *     this.right = (right===undefined ? null : right)
  * }
  */
+// Using stack to do inorder traversal
 /**
  * @param {TreeNode} root
  */
