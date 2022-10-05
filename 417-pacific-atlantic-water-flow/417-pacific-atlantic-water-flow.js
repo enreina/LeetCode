@@ -8,17 +8,6 @@ var pacificAtlantic = function(heights) {
         Atlantic: 1,
     };
     
-    // Improvement: memoized cells that's already known to be able to reach Pacific & Atlantic cell
-    // const reachedOcean = new Array(2);
-    // reachedOcean[OceanType.Pacific] = new Array(heights.length);
-    // reachedOcean[OceanType.Atlantic] = new Array(heights.length);
-    // for (let rowIndex = 0; rowIndex<heights.length; rowIndex++) {
-    //     reachedOcean[OceanType.Pacific][rowIndex] = new Array(heights[rowIndex].length);
-    //     reachedOcean[OceanType.Pacific][rowIndex].fill(null);
-    //     reachedOcean[OceanType.Atlantic][rowIndex] = new Array(heights[rowIndex].length);
-    //     reachedOcean[OceanType.Atlantic][rowIndex].fill(null);
-    // }
-    
     const visitedCells = new Array(heights.length);
     for (let rowIndex = 0; rowIndex<visitedCells.length; rowIndex++) {
         visitedCells[rowIndex] = new Array(heights[rowIndex].length);
@@ -39,13 +28,6 @@ var pacificAtlantic = function(heights) {
         if (rowIndex >= heights.length || colIndex >= heights[rowIndex].length) {
             return oceanType === OceanType.Atlantic;
         }
-        // if (reachedOcean[oceanType][rowIndex][colIndex] !== null) {
-        //     return reachedOcean[oceanType][rowIndex][colIndex];
-        // }
-        // if (visitedCells[rowIndex][colIndex]) {
-        //     return reachedOcean[oceanType][rowIndex][colIndex];
-        // }
-        
         
         visitedCells[rowIndex][colIndex] = true;
         let result = false;
@@ -70,14 +52,12 @@ var pacificAtlantic = function(heights) {
             result = result || isOceanReachable(rowIndex, colIndex - 1, oceanType);
         }
         
-        // reachedOcean[oceanType][rowIndex][colIndex] = result;
         return result;
     };
     
     const results = new Array();
     heights.forEach((row, rowIndex) => {
        row.forEach((_, colIndex) => {
-           // console.log(`checking ${rowIndex} ${colIndex}`)
            const canReachPacific = isOceanReachable(rowIndex, colIndex, OceanType.Pacific);
            resetVisitedCells();
            const canReachAtlantic = isOceanReachable(rowIndex, colIndex, OceanType.Atlantic);
