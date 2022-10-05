@@ -9,15 +9,15 @@ var pacificAtlantic = function(heights) {
     };
     
     // Improvement: memoized cells that's already known to be able to reach Pacific & Atlantic cell
-    const reachedOcean = new Array(2);
-    reachedOcean[OceanType.Pacific] = new Array(heights.length);
-    reachedOcean[OceanType.Atlantic] = new Array(heights.length);
-    for (let rowIndex = 0; rowIndex<heights.length; rowIndex++) {
-        reachedOcean[OceanType.Pacific][rowIndex] = new Array(heights[rowIndex].length);
-        reachedOcean[OceanType.Pacific][rowIndex].fill(null);
-        reachedOcean[OceanType.Atlantic][rowIndex] = new Array(heights[rowIndex].length);
-        reachedOcean[OceanType.Atlantic][rowIndex].fill(null);
-    }
+    // const reachedOcean = new Array(2);
+    // reachedOcean[OceanType.Pacific] = new Array(heights.length);
+    // reachedOcean[OceanType.Atlantic] = new Array(heights.length);
+    // for (let rowIndex = 0; rowIndex<heights.length; rowIndex++) {
+    //     reachedOcean[OceanType.Pacific][rowIndex] = new Array(heights[rowIndex].length);
+    //     reachedOcean[OceanType.Pacific][rowIndex].fill(null);
+    //     reachedOcean[OceanType.Atlantic][rowIndex] = new Array(heights[rowIndex].length);
+    //     reachedOcean[OceanType.Atlantic][rowIndex].fill(null);
+    // }
     
     const visitedCells = new Array(heights.length);
     for (let rowIndex = 0; rowIndex<visitedCells.length; rowIndex++) {
@@ -70,7 +70,7 @@ var pacificAtlantic = function(heights) {
             result = result || isOceanReachable(rowIndex, colIndex - 1, oceanType);
         }
         
-        reachedOcean[oceanType][rowIndex][colIndex] = result;
+        // reachedOcean[oceanType][rowIndex][colIndex] = result;
         return result;
     };
     
