@@ -16,15 +16,14 @@ var findOrder = function(numCourses, prerequisites) {
     // console.log(preqGraph);
     // keep track of visited course
     const visitedCourse = new Set();
+    // beingVisited is needed to detect cycle; keeping track of the current prereq that's being processed
     const beingVisited = new Set();
     const sortedCourse = [];
     let cycleDetected = false;
     const dfs = (currentCourse, sortedCourse) => {
-        // console.log(currentCourse);
         // mark as visited
         visitedCourse.add(currentCourse);
         beingVisited.add(currentCourse);
-        // console.log(visitedCourse);
         // visit neightbors (courses which has this currentCourse as a prerequisite)
         preqGraph[currentCourse].forEach((course) => {
             if (beingVisited.has(course)) {
@@ -37,7 +36,6 @@ var findOrder = function(numCourses, prerequisites) {
         });
         sortedCourse.unshift(currentCourse);
         beingVisited.delete(currentCourse);
-        // console.log(sortedCourse);
     }
     // run dfs on every unvisited course
     preqGraph.forEach((_, course) => {
