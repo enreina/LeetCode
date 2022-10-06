@@ -21,6 +21,9 @@ var findOrder = function(numCourses, prerequisites) {
     const sortedCourse = [];
     let cycleDetected = false;
     const dfs = (currentCourse, sortedCourse) => {
+        if (cycleDetected) {
+            return; // short circuit if we already know that cycle is detected
+        }
         // mark as visited
         visitedCourse.add(currentCourse);
         beingVisited.add(currentCourse);
