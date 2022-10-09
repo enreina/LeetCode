@@ -6,7 +6,6 @@
 var threeSumClosest = function(nums, target) {
     // sort the numbers in ascending order
     nums.sort((a,b) => (a-b));
-    console.log(nums);
     
     // use each element as a fixed "center" value (except first and last element)
     // then choose the leftmost and rightmost element
