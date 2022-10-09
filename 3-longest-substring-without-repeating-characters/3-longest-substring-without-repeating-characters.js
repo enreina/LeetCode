@@ -24,11 +24,6 @@ var lengthOfLongestSubstring = function(s) {
     const uniqueCharacterPosition = new Map();
     
     while (endPointer < s.length) {
-        
-        console.log(`startPointer: ${startPointer}`);
-        console.log(`endPointer: ${endPointer}`);
-        console.log(s.substring(startPointer, endPointer+1));
-        
         const currentCharacter = s[endPointer];
         if (uniqueCharacterPosition.has(currentCharacter)) {
             const sameCharacterPosition = uniqueCharacterPosition.get(currentCharacter);
