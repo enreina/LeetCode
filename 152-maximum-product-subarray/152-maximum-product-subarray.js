@@ -11,17 +11,18 @@ var maxProduct = function(nums) {
     const maxProduct = new Array(nums.length);
     const minProduct = new Array(nums.length);
     
-    maxProduct[0] = nums[0];
-    minProduct[0] = nums[0];
+    let currentMaxProduct = nums[0];
+    let currentMinProduct = nums[0];
     let result = nums[0];
     
     for (let n=1; n<nums.length; n++) {
-        maxProduct[n] = Math.max(maxProduct[n-1] * nums[n], minProduct[n-1] * nums[n], nums[n]);
-        minProduct[n] = Math.min(maxProduct[n-1] * nums[n], minProduct[n-1] * nums[n], nums[n]);
-        result = Math.max(result, maxProduct[n]);
+        const tempCurrentMaxProduct = currentMaxProduct;
+        currentMaxProduct = Math.max(currentMaxProduct * nums[n], currentMinProduct * nums[n], nums[n]);
+        currentMinProduct = Math.min(tempCurrentMaxProduct * nums[n], currentMinProduct * nums[n], nums[n]);
+        result = Math.max(result, currentMaxProduct);
     }
     
-    return Math.max(result, maxProduct[nums.length-1]);
+    return result;
 };
 // The following solution was attempted but got Time Limit Exceeded as it has worst time complexity of O(n^2)
 var maxProductTLE = function(nums) {
