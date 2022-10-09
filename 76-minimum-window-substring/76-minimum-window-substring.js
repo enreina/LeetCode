@@ -42,6 +42,7 @@ var minWindow = function(s, t) {
                 if (charFrequency[currentChar] > 0) {
                     numberOfCharNeeded--;
                 }
+                // we allow the frequency to be negative, so we're covered when we move left pointer later
                 charFrequency[currentChar]--;
             }
             if (numberOfCharNeeded > 0) {
@@ -59,6 +60,7 @@ var minWindow = function(s, t) {
         let leftChar = s.charAt(leftWindow);
         charFrequency[leftChar]++;
         if (charFrequency[leftChar] > 0) {
+            // if the characters is not already in the current window, then we need to increase number of character needed
             numberOfCharNeeded++;
         }
         leftWindow++;
