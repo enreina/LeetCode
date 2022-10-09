@@ -11,7 +11,7 @@ var threeSumClosest = function(nums, target) {
     // use each element as a fixed "center" value (except first and last element)
     // then choose the leftmost and rightmost element
     // calculate the sum, and depending on the difference with the target move the left and right pointer accordingly
-    let minDifference = Number.POSITIVE_INFINITY;
+    let minDifference = null;
     let sumClosestToTarget = null;
     
     for (let ii=1; ii<nums.length-1; ii++) {
@@ -29,7 +29,7 @@ var threeSumClosest = function(nums, target) {
         }
         let difference = Math.abs(target - sum);
         
-        if (difference < minDifference) {
+        if (minDifference === null || difference < minDifference) {
             sumClosestToTarget = sum;
             minDifference = difference;
         }
