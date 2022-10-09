@@ -26,13 +26,13 @@ var minWindow = function(s, t) {
         leftWindow++;
         currentChar = s.charAt(leftWindow);
     }
+    // we set right window as "not rolling yet" -- the actual window resize is in the next while loop block
     rightWindow = leftWindow - 1;
     
     let numberOfCharNeeded = t.length;
     while (leftWindow <= s.length - t.length) {
         // move right window gradually until we satisfy constraint
-        // console.log(numberOfCharNeeded);
-        // console.log(charFrequency);
+        // we only need to do this if we don't already satisfy the constraint
         if (numberOfCharNeeded > 0) {
             rightWindow++;
         }
@@ -50,7 +50,6 @@ var minWindow = function(s, t) {
         }
         const currentSubstring = s.substr(leftWindow, rightWindow - leftWindow + 1);
         if (numberOfCharNeeded === 0) {
-            // console.log(currentSubstring);
             if (minimumWindowSubstring === "" || currentSubstring.length < minimumWindowSubstring.length) {
                 minimumWindowSubstring = currentSubstring;
             }
