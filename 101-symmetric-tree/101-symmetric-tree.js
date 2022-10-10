@@ -11,6 +11,20 @@
  * @return {boolean}
  */
 var isSymmetric = function(root) {
+    const isSymmetricHelper = (leftRoot, rightRoot) => {
+        if (leftRoot === null || rightRoot === null) {
+            return leftRoot === rightRoot;
+        } else if (leftRoot.val !== rightRoot.val) {
+            return false;
+        }
+        
+        return isSymmetricHelper(leftRoot.left, rightRoot.right) && isSymmetricHelper(leftRoot.right, rightRoot.left);
+    };
+    
+    return root === null || isSymmetricHelper(root.left, root.right);
+};
+
+var isSymmetricFlipApproach = function(root) {
     // a tree is symmetric if the tree is the same when flipped
     
     // first we create a flipped version of the tree
