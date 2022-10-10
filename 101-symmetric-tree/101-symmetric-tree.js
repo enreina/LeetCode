@@ -11,7 +11,7 @@
  * @return {boolean}
  */
 var isSymmetric = function(root) {
-    // a tree if symmetric if the tree is the same when flipped
+    // a tree is symmetric if the tree is the same when flipped
     
     // first we create a flipped version of the tree
     const flipTree = (root) => {
