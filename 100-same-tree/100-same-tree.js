@@ -12,6 +12,13 @@
  * @return {boolean}
  */
 var isSameTree = function(p, q) {
+    // Recursive Approach
+    // Base case:
+    // - if p and q are both null they are the same
+    // Recursive case, tree p and q are the same if: 
+    // - both roots have the same value; and
+    // - the left subtree of p and the left subtree of q are the same tree; and
+    // - the right subtree of p and the right subtree of q are the same tree
     let sameTree = false;
     if (p !== null && q !== null) {
         sameTree = p.val === q.val
