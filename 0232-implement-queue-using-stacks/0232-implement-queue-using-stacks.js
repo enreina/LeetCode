@@ -10,34 +10,35 @@ var MyQueue = function() {
  * @return {void}
  */
 MyQueue.prototype.push = function(x) {
-    // always keep first stack to have the head element only
+    // always push to first stack
     if (this.firstStack.length === 0) {
         this.head = x;
     }
-    
-    while (this.firstStack.length > 0) {
-        this.secondStack.push(this.firstStack.pop());
-    }
-    this.secondStack.push(x);
-    while (this.secondStack.length > 0) {
-        this.firstStack.push(this.secondStack.pop());
-    }
+    this.firstStack.push(x);
 };
 
 /**
  * @return {number}
  */
 MyQueue.prototype.pop = function() {
-    const result = this.firstStack.pop();
-    // update the head element
-    this.head = this.firstStack.at(-1);
-    return result;
+    if (this.secondStack.length === 0) {
+        // move elements from first stack to second stack so the second stack is the reversed
+        // order of the first stack
+        while (this.firstStack.length > 0) {
+            this.secondStack.push(this.firstStack.pop());
+        }
+    }
+    
+    return this.secondStack.pop();;
 };
 
 /**
  * @return {number}
  */
 MyQueue.prototype.peek = function() {
+    if (this.secondStack.length > 0) {
+        return this.secondStack.at(-1);
+    }
     return this.head;
 };
 
@@ -45,7 +46,7 @@ MyQueue.prototype.peek = function() {
  * @return {boolean}
  */
 MyQueue.prototype.empty = function() {
-    return this.firstStack.length === 0;
+    return this.firstStack.length === 0 && this.secondStack.length === 0;
 };
 
 /** 
