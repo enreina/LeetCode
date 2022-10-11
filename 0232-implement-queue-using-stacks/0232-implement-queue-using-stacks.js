@@ -2,6 +2,7 @@
 var MyQueue = function() {
     this.firstStack = [];
     this.secondStack = [];
+    this.head = null;
 };
 
 /** 
@@ -9,43 +10,42 @@ var MyQueue = function() {
  * @return {void}
  */
 MyQueue.prototype.push = function(x) {
-    // always push to first stack
-    this.firstStack.push(x);
+    // always keep first stack to have the head element only
+    if (this.firstStack.length === 0) {
+        this.head = x;
+    }
+    
+    while (this.firstStack.length > 0) {
+        this.secondStack.push(this.firstStack.pop());
+    }
+    this.secondStack.push(x);
+    while (this.secondStack.length > 0) {
+        this.firstStack.push(this.secondStack.pop());
+    }
 };
 
 /**
  * @return {number}
  */
 MyQueue.prototype.pop = function() {
-    while (this.firstStack.length > 1) {
-        this.secondStack.push(this.firstStack.pop());
-    }
     const result = this.firstStack.pop();
-    while (this.secondStack.length > 0) {
-        this.firstStack.push(this.secondStack.pop());
-    }
-    return result
+    // update the head element
+    this.head = this.firstStack.at(-1);
+    return result;
 };
 
 /**
  * @return {number}
  */
 MyQueue.prototype.peek = function() {
-    while (this.firstStack.length > 1) {
-        this.secondStack.push(this.firstStack.pop());
-    }
-    const result = this.firstStack.at(0);
-    while (this.secondStack.length > 0) {
-        this.firstStack.push(this.secondStack.pop());
-    }
-    return result;
+    return this.head;
 };
 
 /**
  * @return {boolean}
  */
 MyQueue.prototype.empty = function() {
-    return this.firstStack.length === 0 && this.secondStack.length === 0;
+    return this.firstStack.length === 0;
 };
 
 /** 
