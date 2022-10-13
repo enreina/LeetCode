@@ -43,23 +43,18 @@ var calculate = function(s) {
                 if (operatorStack.length === 0) {
                     operatorStack.push(currentChar);
                 } else {
-                    const topOfStack = operatorStack.at(-1);
+                    let currentOperator = operatorStack.at(-1);
                     // if operator precedence is greater than precendence of top of operator stack, push the operator into the stack
-                    if (Precedence[currentChar] > Precedence[topOfStack]) {
-                        operatorStack.push(currentChar);
-                    } else {
-                        // otherwise we pop and evaluate until we found an operator with lower or equal precedence
-                        let currentOperator = operatorStack.at(-1);
-                        while (Precedence[currentChar] <= Precedence[currentOperator] && operatorStack.length > 0) {
-                            operatorStack.pop();
-                            const secondOperand = operandStack.pop();
-                            const firstOperand = operandStack.pop();
-                            const evaluationResult = evaluate(firstOperand, secondOperand, currentOperator);
-                            operandStack.push(evaluationResult);
-                            currentOperator = operatorStack.at(-1);
-                        }
-                        operatorStack.push(currentChar);
+                    // otherwise we pop and evaluate until we found an operator with lower or equal precedence
+                    while (Precedence[currentChar] <= Precedence[currentOperator] && operatorStack.length > 0) {
+                        operatorStack.pop();
+                        const secondOperand = operandStack.pop();
+                        const firstOperand = operandStack.pop();
+                        const evaluationResult = evaluate(firstOperand, secondOperand, currentOperator);
+                        operandStack.push(evaluationResult);
+                        currentOperator = operatorStack.at(-1);
                     }
+                    operatorStack.push(currentChar);
                 }
                 
             }
