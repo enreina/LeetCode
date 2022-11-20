@@ -8,10 +8,42 @@
  * };
  */
 
+/** Constant Space Approach; Level Order Traversal while connecting next pointer **/
 /**
  * @param {Node} root
  * @return {Node}
  */
+var connect = function(root) {
+    if (root === null) {
+        return root;
+    }
+    
+    let levelStartNode = root;
+    while (levelStartNode !== null) {
+        let currentNode = levelStartNode;
+        while (currentNode !== null) {
+            // connect their left and right children
+            if (currentNode.left && currentNode.right) {
+                currentNode.left.next = currentNode.right;
+            }
+            // connect the right child with the left child of the next node
+            if (currentNode.right && currentNode.next) {
+                currentNode.right.next = currentNode.next.left;
+            }
+            currentNode = currentNode.next;
+        }
+        // move to the next level
+        levelStartNode = levelStartNode.left;
+    }
+    
+    return root;
+};
+
+
+/** BFS with Queue Approach; Keeping track of previously visited node and their level **/
+/**
+ * @param {Node} root
+ * @return {Node}
 var connect = function(root) {
     if (root === null) {
         return root;
@@ -42,3 +74,4 @@ var connect = function(root) {
     
     return root;
 };
+*/
