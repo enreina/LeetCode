@@ -3,19 +3,27 @@
  * @return {number}
  */
 var singleNumber = function(nums) {
-    // hashmap approach
-    // Time: O(n); Space: O(n)
-    let singleNumber;
-    const set = new Set();
+    // xor approach
+    // Time: O(n); Space: O(1)
+    let xorResult = 0;
     nums.forEach((num) => {
-        if (set.has(num)) {
-            set.delete(num);
-        } else {
-            set.add(num);
-        }
+        xorResult = xorResult ^ num;
     });
     
-    const setIter = set.values();
-    return setIter.next().value;
+    return xorResult;
     
+    // hashmap approach
+    // Time: O(n); Space: O(n)
+//     let singleNumber;
+//     const set = new Set();
+//     nums.forEach((num) => {
+//         if (set.has(num)) {
+//             set.delete(num);
+//         } else {
+//             set.add(num);
+//         }
+//     });
+    
+//     const setIter = set.values();
+//     return setIter.next().value;
 };
