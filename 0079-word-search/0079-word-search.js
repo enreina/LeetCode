@@ -10,27 +10,28 @@ var exist = function(board, word) {
         // if we length of walked cells equal to word length, return true
     // return false by default
     
-    const backtrackBoard = (currentIndex, row, col, visited) => {
+    const backtrackBoard = (currentIndex, row, col) => {
         if (board[row][col] === word.charAt(currentIndex)) {
             if (currentIndex === word.length - 1) {
                 return true;
             }
-            let found = false;
+            // mark as visited
+            board[row][col] = "1";
             // walk through adjacent cells
             const dir = [[-1, 0], [0, 1], [1, 0], [0, -1]]; //up, right, down, left
-            dir.find(([rowChange, colChange]) => {
+            const foundPath = dir.find(([rowChange, colChange]) => {
                 const newRow = row + rowChange;
                 const newCol = col + colChange;
                 if (newRow >= 0 && newRow < board.length && 
-                    newCol >=0 && newCol < board[newRow].length &&
-                    !visited.has(`${newRow},${newCol}`)) {
-                    const newVisited = new Set([...visited]);
-                    newVisited.add(`${row},${col}`);
-                    found = found || backtrackBoard(currentIndex+1, newRow, newCol, newVisited);
+                    newCol >=0 && newCol < board[newRow].length) {
+                    return backtrackBoard(currentIndex+1, newRow, newCol);
+                } else {
+                    return false;
                 }
-                return found;
             });
-            return found;
+            // reset visited
+            board[row][col] = word.charAt(currentIndex);
+            return !!foundPath;
         }
 
         return false;
@@ -40,7 +41,7 @@ var exist = function(board, word) {
 
     for (let row=0; row<board.length; row++) {
         for (let col=0; col<board[row].length; col++) {
-            found = found || backtrackBoard(0, row, col, new Set());
+            found = found || backtrackBoard(0, row, col);
         }
     }
 
