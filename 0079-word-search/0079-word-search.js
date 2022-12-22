@@ -18,7 +18,7 @@ var exist = function(board, word) {
             let found = false;
             // walk through adjacent cells
             const dir = [[-1, 0], [0, 1], [1, 0], [0, -1]]; //up, right, down, left
-            dir.forEach(([rowChange, colChange]) => {
+            dir.find(([rowChange, colChange]) => {
                 const newRow = row + rowChange;
                 const newCol = col + colChange;
                 if (newRow >= 0 && newRow < board.length && 
@@ -28,6 +28,7 @@ var exist = function(board, word) {
                     newVisited.add(`${row},${col}`);
                     found = found || backtrackBoard(currentIndex+1, newRow, newCol, newVisited);
                 }
+                return found;
             });
             return found;
         }
