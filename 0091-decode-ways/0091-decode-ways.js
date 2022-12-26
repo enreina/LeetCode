@@ -28,19 +28,19 @@ var numDecodings = function(s) {
         validMapping.add(`${ii}`);
     }
 
-    const ways = new Array(s.length+1);
-    ways[0] = 1; 
-    ways[1] = validMapping.has(s.substring(0,1)) ? 1 : 0;
+    let ways = [1, validMapping.has(s.substring(0,1)) ? 1 : 0];
     for (let n=2; n<=s.length; n++) {
-        ways[n] = 0;
+        let temp = 0;
+        const [a,b] = ways;
         if (validMapping.has(s.substring(n-1, n))) {
-            ways[n] += ways[n-1];
+            temp += b;
         }
 
         if (validMapping.has(s.substring(n-2, n))) {
-            ways[n] += ways[n-2];
+            temp += a;
         }
+        ways = [b, temp];
     }
 
-    return ways[s.length];
+    return ways[1];
 };
