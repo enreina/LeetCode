@@ -16,6 +16,6 @@ var minDeletionSize = function(strs) {
         }
     }
     return colToBeDeleted;
-    // Time complexity: O(N * K) -> number of strings times length of each string
+    // Time complexity: O(N * K) -> number of strings (N) times length of each string (K)
     // Space complexity: O(1) -> we only need to store colToBeDeleted
 };
